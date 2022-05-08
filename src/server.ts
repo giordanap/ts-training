@@ -9,6 +9,8 @@ dotenv.config();
 
 import indexRoutes from './routes/indexRoutes';
 import postsRouter from './routes/postsRoutes';
+import userRouter from './routes/userRoutes';
+
 import dbConnection from './database/config';
 
 class Server {
@@ -42,6 +44,7 @@ class Server {
     routes(){
         this.app.use(indexRoutes);
         this.app.use('/api/posts', postsRouter);
+        this.app.use('/api/user', userRouter);
     }
 
     start(){

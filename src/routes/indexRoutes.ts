@@ -11,6 +11,7 @@ class IndexRoutes {
 
     routes(){
         this.router.get('/', (req, res) => res.send('Api: /api/posts'));
+        this.router.get('/', (req, res) => res.send('Api: /api/users'));
     }
 }
 
