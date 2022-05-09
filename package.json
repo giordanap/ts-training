@@ -24,6 +24,7 @@
     "@types/compression": "^1.7.2",
     "@types/cors": "^2.8.12",
     "@types/dotenv": "^8.2.0",
+    "@types/express-validator": "^3.0.0",
     "@types/morgan": "^1.9.3",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
@@ -40,6 +41,8 @@
     "@types/nodemon": "^1.19.1",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.0",
+    "express-validator": "^6.14.0",
+    "nodemon": "^2.0.16",
     "typescript": "^4.6.4"
   }
 }

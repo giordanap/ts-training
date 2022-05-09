@@ -1,7 +1,5 @@
 import { Request, Response, Router } from 'express';
 
-import Post from '../models/post';
-
 import { 
     getPost, 
     getPosts,
