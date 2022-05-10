@@ -9,6 +9,7 @@ export const generarJWT = ( uid:string = '' ) => {
         jwt.sign( payload,  <string>process.env.SECRETORPRIVATEKEY, {
             expiresIn : '4h'
         }, (err, token) => {
+
             if (err) {
                 console.log(err);
                 reject( 'No se pudo generar el token' );
@@ -16,6 +17,5 @@ export const generarJWT = ( uid:string = '' ) => {
                 resolve( token );
             }
         })
-
     } )
 }
