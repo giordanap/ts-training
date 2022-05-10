@@ -1,11 +1,10 @@
-import mongoose, { connection } from "mongoose";
+import mongoose from "mongoose";
 import dotenv from 'dotenv';
 dotenv.config();
 
 const dbConnection = async() => {
     try {
-        let cadena:string = process.env.MONGO_CONNECTION || '';
-        await mongoose.connect(cadena);
+        await mongoose.connect(<string>process.env.MONGO_CONNECTION);
         console.log('Connected to database');
     } catch (error) {
         console.error(error);

@@ -35,7 +35,7 @@ class Server {
         this.connectDB();
         //Middlewares
         this.app.use(morgan('dev'));
-        this.app.use(express.json());
+        this.app.use(express.json()); // Con esto la consola ya entiende archvos tipo json
         this.app.use(express.urlencoded({extended: false}));
         this.app.use(helmet());
         this.app.use(compression());

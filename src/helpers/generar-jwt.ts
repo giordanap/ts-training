@@ -1,21 +1,16 @@
 import jwt from 'jsonwebtoken';
 
-export const generarJWT = ( uid = '' ):Promise<string> => {
+export const generarJWT = ( uid = '' ):string => {
 
-    return new Promise( (reject, resolve)  => {
-
-        const payload = { uid };
-        const privateKey = process.env.SECRETORPRIVATEKEY || '';
-        jwt.sign( payload,  privateKey, {
-            expiresIn : '4h'
-        }, (err, token) => {
-            if (err) {
-                console.log(err);
-                reject( 'No se pudo generar el token' );
-            } else {
-                resolve( <string>token );
+    const payload = { _id: uid };
+    const token = 
+        jwt.sign( 
+            payload, 
+            process.env.SECRETORPRIVATEKEY || 'token_test', 
+            {
+                expiresIn : '4h'
             }
-        })
-        console.log('aca');
-    } )
+        );
+
+    return token;
 }

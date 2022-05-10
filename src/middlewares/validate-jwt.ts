@@ -1,28 +1,22 @@
-import { Request, Response } from 'express'; 
+import { Request, Response, NextFunction } from 'express'; 
 import jwt from 'jsonwebtoken';
 import User from '../models/user';
 
-export const validarJWT = async( req: Request, res: Response, next:any ) => {
+interface IPayload {
+    _id: string;
+    iat: number;
+    exp: number;
+}
+
+export const validarJWT = async( req: Request, res: Response, next:NextFunction ) => {
 
     const token = req.header('x-token');
-
-    if ( !token ) {
-        return res.status(401).json({
-            msg: 'No hay token en la peticion'
-        })
-    }
-
+    if ( !token ) return res.status(401).json({ msg: 'No hay token en la peticion' });
+    
     try {
-        const uid = jwt.verify(token, <string>process.env.SECRETORPRIVATEKEY);
-        const user = await User.findById( uid );
 
-        if ( !user) {
-            return res.status(401).json({
-                msg: 'No existe el usuario'
-            })
-        }
-
-        // req.user = user;
+        const payload = jwt.verify(token, process.env.SECRETORPRIVATEKEY || 'token_test') as IPayload;
+        req.userId = payload._id;
 
         next();
 

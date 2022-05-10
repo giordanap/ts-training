@@ -18,8 +18,9 @@ export const getUsers = async(req: Request, res: Response):Promise<void> => {
   });
 }
 
-export const getUser = async(req: Request, res: Response):Promise<void> => {
-    const user = await User.findOne({id: req.params.id})
+export const getUser = async(req: Request, res: Response) => {
+    const user = await User.findOne({_id: req.userId});
+    if ( !user) return res.status(401).json({ msg: 'No existe el usuario' });
     res.json(user);
 }
 
