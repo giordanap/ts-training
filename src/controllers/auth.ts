@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import User from '../models/user';
+import bcryptjs from 'bcryptjs'
 import { generarJWT } from '../helpers/generar-jwt';
 import { googleVerify } from '../helpers/google-verify';
 
@@ -17,17 +18,27 @@ export const login = async( req: Request, res: Response) => {
                 msg: 'Usuario / Password no son correctos - correo'
             })
         }
-
+        
+        // verificar password
+        const validPassword = bcryptjs.compareSync(password, user.password);
+        if ( !validPassword ) {
+            return res.status(400).json({
+                msg: 'Usuario / Password no son correctos - contraseña'
+            })
+        }
+        
         // generar JWT
-        const token = await generarJWT( user.id );
+        const token:string = await generarJWT(user.id);
+        console.log('llego');
 
         res.json({
             user,
             token
-        }) 
+        });
+        
 
     } catch (error) {
-        console.log(error)
+        // console.log(error);
         res.status(500).json({
             msg: 'Hable con el administrador'
         })

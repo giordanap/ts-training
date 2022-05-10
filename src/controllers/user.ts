@@ -19,7 +19,7 @@ export const getUsers = async(req: Request, res: Response):Promise<void> => {
 }
 
 export const getUser = async(req: Request, res: Response):Promise<void> => {
-    const user = await User.findOne({username: req.params.username})
+    const user = await User.findOne({id: req.params.id})
     res.json(user);
 }
 

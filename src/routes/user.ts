@@ -1,6 +1,10 @@
 import { Router } from 'express';
 const { check }  = require('express-validator');
 
+import { validateFields } from '../middlewares/validate-fields';
+import { validarJWT } from '../middlewares/validate-jwt';
+import { userExistsById, isValidEmail } from '../helpers/db-validators';
+
 import { 
     getUser, 
     getUsers,
@@ -8,11 +12,6 @@ import {
     putUser,
     deleteUser
 } from '../controllers/user';
-import { validateFields } from '../middlewares/validate-fields';
-import { 
-    userExistsById,
-	isValidEmail,
-} from '../helpers/db-validators';
 
 class UserRoutes {
     
@@ -25,7 +24,11 @@ class UserRoutes {
 
     routes(){
         this.router.get('/', getUsers);
-        this.router.get('/:username', getUser);
+        this.router.get('/:id',
+            [
+                validarJWT
+            ],
+            getUser);
         this.router.post('/',
             [
                 check('name', 'Name is required').not().isEmpty(),

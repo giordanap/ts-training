@@ -44,9 +44,9 @@ class Server {
 
     routes(){
         this.app.use(indexRoutes);
-        this.app.use('/api/users', authRouter);
-        this.app.use('/api/posts', postsRouter);
-        this.app.use('/api/users', usersRouter);
+        this.app.use('/api/auth', authRouter);
+        this.app.use('/api/user', usersRouter);
+        this.app.use('/api/post', postsRouter);
     }
 
     start(){
