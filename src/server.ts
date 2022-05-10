@@ -7,9 +7,10 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 dotenv.config();
 
-import indexRoutes from './routes/indexRoutes';
-import postsRouter from './routes/postsRoutes';
-import usersRouter from './routes/userRoutes';
+import indexRoutes from './routes';
+import authRouter from './routes/auth';
+import postsRouter from './routes/post';
+import usersRouter from './routes/user';
 
 import dbConnection from './database/config';
 
@@ -43,6 +44,7 @@ class Server {
 
     routes(){
         this.app.use(indexRoutes);
+        this.app.use('/api/users', authRouter);
         this.app.use('/api/posts', postsRouter);
         this.app.use('/api/users', usersRouter);
     }
