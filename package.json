@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"tsc -w\" \"nodemon ./build/server.js\"",
-    "start": "tsc && node ./build/server.js"
+    "start": "tsc && node ./build/server.js",
+    "dev": "concurrently \"tsc -w\" \"nodemon ./build/server.js\""
   },
   "repository": {
     "type": "git",

@@ -16,8 +16,8 @@ import dbConnection from './database/config';
 
 class Server {
 
-    app:express.Application;
-    port?:string;
+    public app:express.Application;
+    port:string;
 
     constructor(){
         this.app = express();
@@ -36,6 +36,7 @@ class Server {
         //Middlewares
         this.app.use(morgan('dev'));
         this.app.use(express.json()); // Con esto la consola ya entiende archvos tipo json
+        this.app.use(express.static('public')); // para autenticacion google
         this.app.use(express.urlencoded({extended: false}));
         this.app.use(helmet());
         this.app.use(compression());

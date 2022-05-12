@@ -41,28 +41,28 @@ export const login = async( req: Request, res: Response) => {
 export const googleSignIn = async( req:Request, res: Response ) => {
 
     const { id_token } = req.body;
-
+    
     try {
 
-        const { email, name, imagen } = await googleVerify( id_token );
-
+        const { name, imagen, email } = await googleVerify( id_token );
+        
         let user = await User.findOne({ email });
 
         if ( !user ) {
             // Tengo que crearlo
             const data = {
                 name,
-                email,
-                imagen
+                imagen,
+                email
             }
 
             user = new User( data );
             await user.save();
         }
 
-        // Generar el JWT
-        const token = await generarJWT( user.id );
-
+        // generar JWT
+        const token:string = generarJWT(user._id);
+        
         res.json({
             user,
             token

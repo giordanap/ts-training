@@ -4,7 +4,7 @@ import bcryptjs from 'bcryptjs';
 import User from '../models/user';
 
 export const getUsers = async(req: Request, res: Response):Promise<void> => {
-  const { from = 0 , limit = 2 } = req.query;
+  const { from = 0 , limit = 5 } = req.query;
   const query = { state: true };
 
   const [totalRows, users] = await Promise.all([
