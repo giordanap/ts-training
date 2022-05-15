@@ -37,7 +37,7 @@ class UserRoutes {
             [
                 check('name', 'Name is required').not().isEmpty(),
                 check('Email').custom(isValidEmail),
-                check('username', 'Username must be a string with 4 characters as minimun').isLength({min: 4}),
+                check('username', 'Username must be a string with 6 characters as minimun').isLength({min: 6}),
                 validateFields
             ], 
             postUser
