@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && node ./build/server.js",
+    "build": "rimraf ./build && tsc",
+    "start": "node ./build/server.js",
     "dev": "concurrently \"tsc -w\" \"nodemon ./build/server.js\""
   },
   "repository": {
