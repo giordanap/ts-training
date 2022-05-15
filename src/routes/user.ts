@@ -23,7 +23,11 @@ class UserRoutes {
     }
 
     routes(){
-        this.router.get('/', getUsers);
+        this.router.get('/',
+            [
+                validarJWT
+            ],
+            getUsers);
         this.router.get('/:id',
             [
                 validarJWT
