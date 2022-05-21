@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "concurrently \"tsc -w\" \"nodemon ./build/server.js\"",
     "build": "rimraf ./build && tsc",
-    "start": "npm run build && node build/server.js"
+    "start": "node build/server.js"
   },
   "repository": {
     "type": "git",
