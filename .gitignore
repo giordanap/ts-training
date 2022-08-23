@@ -40,3 +40,7 @@ build
 
 # ignore yarn.lock
 yarn.lock
+
+# file/ .js
+*/tipos/*.js
+app.js
