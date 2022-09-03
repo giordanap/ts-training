@@ -1,52 +1,73 @@
-(() => {
+ (() => {
 
-    // Tipos
-    const batman: string = 'Bruce';
-    const superman: string = 'Clark';
-  
-    const existe: boolean = false;
-  
-    // Tuplas
-    const parejaHeroes: [string, string] = [batman,superman];
-    const villano: [string, number, boolean] = ['Lex Lutor',5,true];
-  
-    // Arreglos
-    const aliados: string[] = ['Mujer Maravilla','Acuaman','San', 'Flash'];
-  
-    //Enumeraciones
+  // Objetos
+  const batimovil: { carroceria: string, modelo: string, antibalas: boolean, pasajeros: number } = {
+    carroceria: "Negra",
+    modelo: "6x6",
+    antibalas: true,
+    pasajeros:4
+  };
 
-    enum enumPower {
-      acuaman,
-      batman,
-      flash = 5,
-      superman = 100
+  const bumblebee: { carroceria: string, modelo: string, antibalas: boolean, pasajeros: number, disparar?: () => void } = {
+    carroceria: "Amarillo con negro",
+    modelo: "4x2",
+    antibalas: true,
+    pasajeros:4,
+    disparar(){ // El metodo disparar es opcional
+      console.log("Disparando");
     }
+  };
+  console.log('pasó por aquí');
 
-    // const fuerzaFlash = 5;
-    // const fuerzaSuperman = 100;
-    // const fuerzaBatman = 1;
-    // const fuerzaAcuaman = 0;
+  // Villanos debe de ser un arreglo de objetos personalizados
+  type villian = {
+    nombre: string;
+    edad?: number;
+    mutante: boolean;
+  }
 
-    const fuerzaFlash: enumPower = enumPower.flash;
-    const fuerzaSuperman: enumPower = enumPower.superman;
-    const fuerzaBatman: enumPower = enumPower.batman;
-    const fuerzaAcuaman: enumPower = enumPower.acuaman;
-  
-    // Retorno de funciones
-    function activar_batiseñal(): string {
-      return 'activada';
-    }
-  
-    function pedir_ayuda(): void {
-      console.log('Auxilio!!!');
-    }
-  
-    // Aserciones de Tipo
-    const poder: any = '100';
-    const largoDelPoder:number = (poder as string).length ;
-    console.log( largoDelPoder );
-  
-  
-  })()
-  
-  
+  const villanos: villian[] = [{
+    nombre:"Lex Luthor",
+    edad: 54,
+    mutante:false
+  },{
+    nombre: "Erik Magnus Lehnsherr",
+    edad: 49,
+    mutante: true
+  },{
+    nombre: "James Logan",
+    edad: undefined,
+    mutante: true
+  }];
+
+  // Multiples tipos
+  // cree dos tipos, uno para charles y otro para apocalipsis
+
+  type goodOne = {
+    poder: string;
+    estatura: number;
+  }
+
+  type badOne = {
+    lider: boolean;
+    miembros: string[];
+  }
+
+  const charles: goodOne = {
+    poder:"psiquico",
+    estatura: 1.78
+  };
+
+  const apocalipsis: badOne = {
+    lider:true,
+    miembros: ["Magneto","Tormenta","Psylocke","Angel"]
+  }
+
+  // Mystique, debe poder ser cualquiera de esos dos mutantes (charles o apocalipsis)
+  let mystique: ( goodOne | badOne );
+
+  mystique = charles;
+  mystique = apocalipsis;
+
+ })()
+
