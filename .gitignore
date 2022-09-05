@@ -44,3 +44,5 @@ yarn.lock
 # file/ .js
 */tipos/*.js
 app.js
+
+package-lock.json

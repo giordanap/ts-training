@@ -1,18 +1,18 @@
 // Crear interfaces
-interface Ibatimovil {
+interface Iauto {
   encender: boolean;
   velocidadMaxima: number;
   acelear(): void;
 }
 
 // Cree una interfaz para validar el auto (el valor enviado por parametro)
-const conducirBatimovil = ( auto: Ibatimovil = batimovil ):void => {
+const conducirBatimovil = ( auto: Iauto ):void => {
   auto.encender = true;
   auto.velocidadMaxima = 100;
   auto.acelear();
 }
 
-const batimovil: Ibatimovil = {
+const batimovil: Iauto = {
   encender:false,
   velocidadMaxima:0,
   acelear(){
@@ -23,9 +23,9 @@ const batimovil: Ibatimovil = {
 // Cree una interfaz con que permita utilzar el siguiente objeto
 // utilizando propiedades opcionales
 interface Iguason {
-  reir: boolean;
-  comer: boolean;
-  llorar: boolean;
+  reir?: boolean;
+  comer?: boolean;
+  llorar?: boolean;
 }
 
 const guason: Iguason = {
@@ -75,10 +75,6 @@ class Persona implements Iciudadano {
   public sexo: string;
   public estadoCivil: string;
 
-  imprimirBio() {
-    console.log(`
-      Me llamo ${ this.nombre }, tengo ${ this.edad },
-      soy ${ this.sexo } y mi estado civil es ${ this.estadoCivil }`);
-  }
+  imprimirBio() { }
 
 }
