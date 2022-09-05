@@ -99,9 +99,9 @@
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
   "exclude": [
-    "node_modules2"
+    "node_modules"
   ],
   "include": [
-    "ES6"
+    "classes"
   ]
 }
