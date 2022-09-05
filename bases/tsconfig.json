@@ -102,6 +102,6 @@
     "node_modules"
   ],
   "include": [
-    "classes"
+    "interfaces"
   ]
 }

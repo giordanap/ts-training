@@ -1,73 +1,84 @@
- (() => {
+// Crear interfaces
+interface Ibatimovil {
+  encender: boolean;
+  velocidadMaxima: number;
+  acelear(): void;
+}
 
-  // Objetos
-  const batimovil: { carroceria: string, modelo: string, antibalas: boolean, pasajeros: number } = {
-    carroceria: "Negra",
-    modelo: "6x6",
-    antibalas: true,
-    pasajeros:4
-  };
+// Cree una interfaz para validar el auto (el valor enviado por parametro)
+const conducirBatimovil = ( auto: Ibatimovil = batimovil ):void => {
+  auto.encender = true;
+  auto.velocidadMaxima = 100;
+  auto.acelear();
+}
 
-  const bumblebee: { carroceria: string, modelo: string, antibalas: boolean, pasajeros: number, disparar?: () => void } = {
-    carroceria: "Amarillo con negro",
-    modelo: "4x2",
-    antibalas: true,
-    pasajeros:4,
-    disparar(){ // El metodo disparar es opcional
-      console.log("Disparando");
-    }
-  };
-  console.log('pasó por aquí');
+const batimovil: Ibatimovil = {
+  encender:false,
+  velocidadMaxima:0,
+  acelear(){
+    console.log("...... gogogo!!!");
+  }
+}
 
-  // Villanos debe de ser un arreglo de objetos personalizados
-  type villian = {
-    nombre: string;
-    edad?: number;
-    mutante: boolean;
+// Cree una interfaz con que permita utilzar el siguiente objeto
+// utilizando propiedades opcionales
+interface Iguason {
+  reir: boolean;
+  comer: boolean;
+  llorar: boolean;
+}
+
+const guason: Iguason = {
+  reir: true,
+  comer:true,
+  llorar:false
+}
+
+const reir = ( guason: Iguason ):void => {
+  if( guason.reir ){
+    console.log("JAJAJAJA");
+  }
+}
+
+
+// Cree una interfaz para la siguiente funcion
+interface IciudadGotica {
+  ( ciudadanos: string[] ): number;
+}
+
+const ciudadGotica: IciudadGotica = ( ciudadanos:string[] ):number => {
+  return ciudadanos.length;
+}
+
+
+// Cree una interfaz que obligue crear una clase
+// con las siguientes propiedades y metodos
+interface Iciudadano {
+  nombre: string;
+  edad: number;
+  sexo: string;
+  estadoCivil: string;
+  imprimirBio(): void;
+}
+
+/*
+  propiedades:
+    - nombre
+    - edad
+    - sexo
+    - estadoCivil
+    - imprimirBio(): void // en consola una breve descripcion.
+*/
+class Persona implements Iciudadano {
+  public nombre: string;
+  public edad: number;
+  public sexo: string;
+  public estadoCivil: string;
+
+  imprimirBio() {
+    console.log(`
+      Me llamo ${ this.nombre }, tengo ${ this.edad },
+      soy ${ this.sexo } y mi estado civil es ${ this.estadoCivil }`);
   }
 
-  const villanos: villian[] = [{
-    nombre:"Lex Luthor",
-    edad: 54,
-    mutante:false
-  },{
-    nombre: "Erik Magnus Lehnsherr",
-    edad: 49,
-    mutante: true
-  },{
-    nombre: "James Logan",
-    edad: undefined,
-    mutante: true
-  }];
-
-  // Multiples tipos
-  // cree dos tipos, uno para charles y otro para apocalipsis
-
-  type goodOne = {
-    poder: string;
-    estatura: number;
-  }
-
-  type badOne = {
-    lider: boolean;
-    miembros: string[];
-  }
-
-  const charles: goodOne = {
-    poder:"psiquico",
-    estatura: 1.78
-  };
-
-  const apocalipsis: badOne = {
-    lider:true,
-    miembros: ["Magneto","Tormenta","Psylocke","Angel"]
-  }
-
-  // Mystique, debe poder ser cualquiera de esos dos mutantes (charles o apocalipsis)
-  let mystique: ( goodOne | badOne );
-
-  mystique = charles;
-  mystique = apocalipsis;
-
- })()
-
+}
