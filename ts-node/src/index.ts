@@ -1,12 +1,10 @@
-import { Hero } from "./classes/Hero";
-// import { Hero as SuperHero, Hero2 } from "./classes/Hero";
-// import * as HeroClasses from "./classes/Hero";
+import { Pokemon } from "./decorators/pokemon-class";
 
 
-// const ironman = new SuperHero('Ironman', 1, 25);
-const ironman = new Hero('Ironman', 1, 25);
+const charmander = new Pokemon('Charmander');
 
-console.log( ironman );
-console.log( ironman.power );
+// ( Pokemon.prototype as any ).customName = 'Pikachu';
+// charmander.savePokemonToDB( 3 );
 
-
+charmander.publicApi = 'https:giordan-arredondo.com';
+console.log( charmander );
